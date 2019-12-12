@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PeliculaViewDlg" widgetVar="PeliculaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.ViewPeliculaTitle}">
+            <h:form id="PeliculaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{peliculaController.selected != null}">
+                        <h:outputText value="#{vistas.ViewPeliculaLabel_idpel}"/>
+                        <h:outputText value="#{peliculaController.selected.idpel}" title="#{vistas.ViewPeliculaTitle_idpel}"/>
+                        <h:outputText value="#{vistas.ViewPeliculaLabel_nompel}"/>
+                        <h:outputText value="#{peliculaController.selected.nompel}" title="#{vistas.ViewPeliculaTitle_nompel}"/>
+                        <h:outputText value="#{vistas.ViewPeliculaLabel_salapel}"/>
+                        <h:outputText value="#{peliculaController.selected.salapel}" title="#{vistas.ViewPeliculaTitle_salapel}"/>
+                        <h:outputText value="#{vistas.ViewPeliculaLabel_fechestreno}"/>
+                        <h:outputText value="#{peliculaController.selected.fechestreno}" title="#{vistas.ViewPeliculaTitle_fechestreno}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{vistas.ViewPeliculaLabel_fechtermino}"/>
+                        <h:outputText value="#{peliculaController.selected.fechtermino}" title="#{vistas.ViewPeliculaTitle_fechtermino}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{vistas.ViewPeliculaLabel_idgen}"/>
+                        <h:outputText value="#{peliculaController.selected.idgen}" title="#{vistas.ViewPeliculaTitle_idgen}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{vistas.Close}" onclick="PeliculaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

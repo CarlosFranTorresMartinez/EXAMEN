@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="65" header="#{vistas.AppName}">
+                <h:form id="menuForm">
+                    <p:menubar>
+                        <p:menuitem value="#{vistas.Home}" outcome="/template" icon="ui-icon-home"/>
+                        <p:submenu label="#{vistas.Maintenance}">
+                            <p:menuitem value="GeneroPelicula" outcome="/vistas/generoPelicula/List.xhtml" />
+                            <p:menuitem value="Personal" outcome="/vistas/personal/List.xhtml" />
+                            <p:menuitem value="Productos" outcome="/vistas/productos/List.xhtml" />
+                        </p:submenu>
+                        
+                        <p:submenu label="COMBO">
+                            <p:menuitem value="Combo" outcome="/vistas/combo/List.xhtml" />
+                            <p:menuitem value="ComboDetalle" outcome="/vistas/comboDetalle/List.xhtml" />
+                        </p:submenu>
+
+                        <p:submenu label="VENTAS">
+                            <p:menuitem value="Venta" outcome="/vistas/venta/List.xhtml" />
+                            <p:menuitem value="VentaCombos" outcome="/vistas/ventaCombos/List.xhtml" />
+                            <p:menuitem value="VentaEntrada" outcome="/vistas/ventaEntrada/List.xhtml" />
+                        </p:submenu>
+                        
+                        <p:menuitem value="PELICULA" outcome="/vistas/pelicula/List.xhtml" />
+                    </p:menubar>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

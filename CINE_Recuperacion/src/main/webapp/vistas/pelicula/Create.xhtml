@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PeliculaCreateDlg" widgetVar="PeliculaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.CreatePeliculaTitle}">
+            <h:form id="PeliculaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{peliculaController.selected != null}">
+                        <p:outputLabel value="#{vistas.CreatePeliculaLabel_nompel}" for="nompel" />
+                        <p:inputText id="nompel" value="#{peliculaController.selected.nompel}" title="#{vistas.CreatePeliculaTitle_nompel}" required="true" requiredMessage="#{vistas.CreatePeliculaRequiredMessage_nompel}"/>
+                        <p:outputLabel value="#{vistas.CreatePeliculaLabel_salapel}" for="salapel" />
+                        <p:selectOneMenu id="salapel" value="#{peliculaController.selected.salapel}" title="#{vistas.CreatePeliculaTitle_salapel}" required="true" requiredMessage="#{vistas.CreatePeliculaRequiredMessage_salapel}">
+                            <f:selectItem itemLabel="SALA 1" itemValue="1"/>
+                            <f:selectItem itemLabel="SALA 2" itemValue="2"/>
+                            <f:selectItem itemLabel="SALA 3" itemValue="3"/>
+                            <f:selectItem itemLabel="SALA 4" itemValue="4"/>
+                            <f:selectItem itemLabel="SALA 5" itemValue="5"/>
+                            <f:selectItem itemLabel="SALA 6" itemValue="6"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{vistas.CreatePeliculaLabel_fechestreno}" for="fechestreno" />
+                        <p:calendar id="fechestreno" pattern="MM/dd/yyyy" value="#{peliculaController.selected.fechestreno}" title="#{vistas.EditPeliculaTitle_fechestreno}" required="true" requiredMessage="#{vistas.EditPeliculaRequiredMessage_fechestreno}" showOn="button"/>
+                        <p:outputLabel value="#{vistas.CreatePeliculaLabel_fechtermino}" for="fechtermino" />
+                        <p:calendar id="fechtermino" pattern="MM/dd/yyyy" value="#{peliculaController.selected.fechtermino}" title="#{vistas.EditPeliculaTitle_fechtermino}" required="true" requiredMessage="#{vistas.EditPeliculaRequiredMessage_fechtermino}" showOn="button"/>
+                        <p:outputLabel value="#{vistas.CreatePeliculaLabel_idgen}" for="idgen" />
+                        <p:selectOneMenu id="idgen" value="#{peliculaController.selected.idgen}" required="true" requiredMessage="#{vistas.EditPeliculaRequiredMessage_idgen}">
+                            <f:selectItems value="#{generoPeliculaController.itemsAvailableSelectOne}"
+                                           var="idgenItem"
+                                           itemValue="#{idgenItem}"
+                                           itemLabel="#{idgenItem.gen}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{peliculaController.create}" value="#{vistas.Save}" update="display,:PeliculaListForm:datalist,:growl" oncomplete="handleSubmit(args,'PeliculaCreateDialog');"/>
+                    <p:commandButton value="#{vistas.Cancel}" onclick="PeliculaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

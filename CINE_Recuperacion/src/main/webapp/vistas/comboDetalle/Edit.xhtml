@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ComboDetalleEditDlg" widgetVar="ComboDetalleEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.EditComboDetalleTitle}">
+            <h:form id="ComboDetalleEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{comboDetalleController.selected != null}">
+                        <p:outputLabel value="#{vistas.EditComboDetalleLabel_idcom}" for="idcom" />
+                        <p:selectOneMenu id="idcom" value="#{comboDetalleController.selected.idcom}" required="true" requiredMessage="#{vistas.EditComboDetalleRequiredMessage_idcom}">
+                            <f:selectItem itemLabel="#{vistas.SelectOneMessage}"/>
+                            <f:selectItems value="#{comboController.itemsAvailableSelectOne}"
+                                           var="idcomItem"
+                                           itemValue="#{idcomItem}"
+                                           itemLabel="#{idcomItem.nomcom}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{vistas.EditComboDetalleLabel_idpro}" for="idpro" />
+                        <p:selectOneMenu id="idpro" value="#{comboDetalleController.selected.idpro}" required="true" requiredMessage="#{vistas.EditComboDetalleRequiredMessage_idpro}">
+                            <f:selectItem itemLabel="#{vistas.SelectOneMessage}"/>
+                            <f:selectItems value="#{productosController.itemsAvailableSelectOne}"
+                                           var="idproItem"
+                                           itemValue="#{idproItem}"
+                                           itemLabel="#{idproItem.nompro}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{vistas.EditComboDetalleLabel_cantpro}" for="cantpro" />
+                        <p:inputText id="cantpro" value="#{comboDetalleController.selected.cantpro}" title="#{vistas.EditComboDetalleTitle_cantpro}" required="true" requiredMessage="#{vistas.EditComboDetalleRequiredMessage_cantpro}"/>
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{comboDetalleController.update}" value="#{vistas.Save}" update="display,:ComboDetalleListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ComboDetalleEditDialog');"/>
+                    <p:commandButton value="#{vistas.Cancel}" onclick="ComboDetalleEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

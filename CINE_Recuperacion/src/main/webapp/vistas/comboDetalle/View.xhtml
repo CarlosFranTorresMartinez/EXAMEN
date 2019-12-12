@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ComboDetalleViewDlg" widgetVar="ComboDetalleViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.ViewComboDetalleTitle}">
+            <h:form id="ComboDetalleViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{comboDetalleController.selected != null}">
+                        <h:outputText value="#{vistas.ViewComboDetalleLabel_idcomdet}"/>
+                        <h:outputText value="#{comboDetalleController.selected.idcomdet}" title="#{vistas.ViewComboDetalleTitle_idcomdet}"/>
+                        <h:outputText value="#{vistas.ViewComboDetalleLabel_cantpro}"/>
+                        <h:outputText value="#{comboDetalleController.selected.cantpro}" title="#{vistas.ViewComboDetalleTitle_cantpro}"/>
+                        <h:outputText value="#{vistas.ViewComboDetalleLabel_idcom}"/>
+                        <h:outputText value="#{comboDetalleController.selected.idcom}" title="#{vistas.ViewComboDetalleTitle_idcom}"/>
+                        <h:outputText value="#{vistas.ViewComboDetalleLabel_idpro}"/>
+                        <h:outputText value="#{comboDetalleController.selected.idpro}" title="#{vistas.ViewComboDetalleTitle_idpro}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{vistas.Close}" onclick="ComboDetalleViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VentaCombosCreateDlg" widgetVar="VentaCombosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vistas.CreateVentaCombosTitle}">
+            <h:form id="VentaCombosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ventaCombosController.selected != null}">
+                        <p:outputLabel value="#{vistas.CreateVentaCombosLabel_idvencom}" for="idvencom" />
+                        <p:inputText id="idvencom" value="#{ventaCombosController.selected.idvencom}" title="#{vistas.CreateVentaCombosTitle_idvencom}" required="true" requiredMessage="#{vistas.CreateVentaCombosRequiredMessage_idvencom}"/>
+                        <p:outputLabel value="#{vistas.CreateVentaCombosLabel_idcom}" for="idcom" />
+                        <p:selectOneMenu id="idcom" value="#{ventaCombosController.selected.idcom}" required="true" requiredMessage="#{vistas.EditVentaCombosRequiredMessage_idcom}">
+                            <f:selectItems value="#{comboController.itemsAvailableSelectOne}"
+                                           var="idcomItem"
+                                           itemValue="#{idcomItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{vistas.CreateVentaCombosLabel_ventaIdvent}" for="ventaIdvent" />
+                        <p:selectOneMenu id="ventaIdvent" value="#{ventaCombosController.selected.ventaIdvent}" required="true" requiredMessage="#{vistas.EditVentaCombosRequiredMessage_ventaIdvent}">
+                            <f:selectItems value="#{ventaController.itemsAvailableSelectOne}"
+                                           var="ventaIdventItem"
+                                           itemValue="#{ventaIdventItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ventaCombosController.create}" value="#{vistas.Save}" update="display,:VentaCombosListForm:datalist,:growl" oncomplete="handleSubmit(args,'VentaCombosCreateDialog');"/>
+                    <p:commandButton value="#{vistas.Cancel}" onclick="VentaCombosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
